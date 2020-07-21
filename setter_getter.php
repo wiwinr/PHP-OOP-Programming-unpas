@@ -127,7 +127,7 @@ class game extends Produk{
 }
 
 class CetakInfoProduk {
-	public function cetak(Produk $produk){
+	public  function cetak(Produk $produk){
 		$str = "{$produk->judul} | {$produk->getLabel()} (Rp. {$produk->harga})";
 		return $str;
 	}
