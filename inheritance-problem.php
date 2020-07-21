@@ -28,7 +28,7 @@ class Produk {
 		return "$this->penulis, $this->penerbit";
 	}		
 
-	public function getlengkap(){
+	public function getinfolengkap(){
 
 		//komik : Naruto | Masashi kisimoto, Shonen Jump (Rp. 30000) - 100 Halaman.
 		$str = "{$this->tipe} : {$this->judul} | {$this->getLabel()} (Rp. {$this->harga})";
@@ -36,7 +36,7 @@ class Produk {
 		if( $this->tipe == "komik"){
 			$str.= " - {$this->jmlhalaman} Halaman.";
 		}else if ( $this->tipe == "game"){
-			$str .= " ~ {this->waktumain} Jam.";
+			$str .= " ~ {$this->waktumain} Jam.";
 		}
 		return $str;
 	}
@@ -56,9 +56,9 @@ $produk1 = new Produk("NAruto", "Masashi Kisimoto", "shonen Jump", 30000, 100, 0
 $produk2 = new Produk("Uncherted", "Neil Druckmann", "Sonny Computer", 2500000, 0, 50, "game");
 
 
-echo $produk1->getlengkap();
+echo $produk1->getinfolengkap();
 echo "<br>";
-echo $produk2->getlengkap();
+echo $produk2->getinfolengkap();
 
 
  ?>
