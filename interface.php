@@ -1,17 +1,15 @@
 <?php 
-//jualan produk
-//komik
-//game
+interface InfoProduk{
+	public function getinfoproduk();
+}
 
-abstract class Produk {
+Abstract class Produk {
 
-	private $judul,
+	protected $judul,
 			$penulis,
-			$penerbit;
-
-	protected	$discon = 0;
-
-	private	$harga;
+			$penerbit,
+			$discon = 0,
+			$harga;
 		
 			
 	public function __construct(
@@ -72,22 +70,12 @@ abstract class Produk {
 	public function getHarga(){
 		return $this->harga -( $this->harga * $this->discon /100);
 	}
-	
-	// abstract class
-	abstract public function getinfoproduk();
 
-	public function getInfo(){
-
-		$str = "{$this->judul} | {$this->getLabel()} (Rp. {$this->harga})";
-		return $str;
-	}
-
+	abstract public function getInfo();
 
 }
 
-
-
-class komik extends Produk{
+class komik extends Produk implements InfoProduk{
 	public $jmlhalaman;
 
 	public function __construct(
@@ -102,7 +90,11 @@ class komik extends Produk{
 		$this->jmlhalaman = $jmlhalaman;
 	}
 
+	public function getInfo() {
 
+		$str = "{$this->judul} | {$this->getLabel()} (Rp. {$this->harga})";
+		return $str;
+	}
 
 	public function getinfoproduk(){
 		//implementasi class abstract getinfoproduk
@@ -111,7 +103,7 @@ class komik extends Produk{
 	}
 }
 
-class game extends Produk{
+class game extends Produk implements InfoProduk{
 
 	public $waktumain;
 
@@ -121,6 +113,13 @@ class game extends Produk{
 
 		$this->waktumain = $waktumain;
 	}
+
+	public function getInfo(){
+
+		$str = "{$this->judul} | {$this->getLabel()} (Rp. {$this->harga})";
+		return $str;
+	}
+
 
 	//implementasi class abstract getinfoproduk
 	public function getinfoproduk(){
@@ -153,3 +152,4 @@ $cetakProduk = new CetakInfoProduk();
 $cetakProduk->tambahproduk($produk1);
 $cetakProduk->tambahproduk($produk2);
 echo $cetakProduk->cetak();
+
